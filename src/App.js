@@ -1,16 +1,20 @@
 import React from 'react'
-import createStore from './store'
+
 import { Provider } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
+import { ApolloProvider } from 'react-apollo'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+
+import api from './store/api'
+import createStore from './store'
+
 import 'react-toastify/dist/ReactToastify.css'
 import Wrapper from './components/Wrapper'
-import MetricGraph from './views/MetricGraph/MetricGraph';
-import api from './store/api';
-import { ApolloProvider } from 'react-apollo';
+import Header from './components/Header'
+import Graph from './container/Graph'
 
-const { client } = api;
+const { client } = api
 const store = createStore()
 const theme = createMuiTheme({
     typography: {
@@ -35,8 +39,9 @@ const App = props => (
         <ApolloProvider client={client}>
             <Provider store={store}>
                 <Wrapper>
+                    <Header />
                     <ToastContainer />
-                    <MetricGraph />
+                    <Graph />
                 </Wrapper>
             </Provider>
         </ApolloProvider>

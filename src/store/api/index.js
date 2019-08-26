@@ -38,18 +38,19 @@ const client = new ApolloClient({
     link,
 })
 
-const subscribeLive = async () => await client.subscribe({
-    query: gql`
-        subscription {
-            newMeasurement {
-                at
-                metric
-                value
-                unit
+const subscribeLive = async () =>
+    await client.subscribe({
+        query: gql`
+            subscription {
+                newMeasurement {
+                    at
+                    metric
+                    value
+                    unit
+                }
             }
-        }
-    `,
-})
+        `,
+    })
 
 const FetchLast30mints = async metric => {
     const last30mints = new Date(new Date().getTime() - 30 * 60000).getTime()
