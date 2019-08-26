@@ -6,20 +6,20 @@ const initialState = {
 }
 
 const multipleMetricsReceived = (state, action) => {
-    const data = action.metrics
+    const data = action.metrics;
     return {
         ...state,
         metrics: data,
-    }
+    };
 }
 
 const metricsReceived = (state, action) => {
-    const { metrics, latestValue } = action
+    const {metrics, latestValue} = action;
     return {
         ...state,
         metrics,
-        latestValue,
-    }
+        latestValue
+    };
 }
 
 const handlers = {
